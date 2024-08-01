@@ -1,8 +1,10 @@
 FROM ubuntu:20.04
+RUN apt-get update && apt-get install -y gnupg
 RUN apt-key del 3bf863cc
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
 ENV LANG C.UTF-8
 RUN export TZ=America/New_York
+RUN DEBIAN_FRONTEND=noninteractive TZ=AMERICA/New_York apt-get -y install tzdata
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
     libboost-log-dev \
     libboost-program-options-dev \
