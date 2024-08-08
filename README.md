@@ -109,7 +109,7 @@ Compile as above for CPU:
 or for GPU:
 
     cd /maDGiCart-CH-build
-    cmake /maDGiCart-CH -DMADG_USE_GPU=On
+    cmake /maDGiCart-CH -DMADG_USE_CUDA=On
     make -j 8
 
 Run unit tests and a sample solution:
@@ -135,7 +135,7 @@ Build the singularity image:
 
 The resulting .sif image can be used with singularity. Note that you will need to set the environment variable LC_ALL=C. For example, you would start a singularity shell as follows:
 
-    singularity shell --nv --env LC_ALL=C myimage.sif
+    singularity shell --nv --env LC_ALL=C --bind $PWD/madGICart-CH:/madGICart-CH --bind $PWD/madGICart-build:/madGICart-CH-build --bind /scratch:/scratch myimage.sif
 
 Inside this shell, you would build using cmake/make in the same way as described in the Docker section.
 
