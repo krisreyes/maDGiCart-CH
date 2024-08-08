@@ -2,6 +2,7 @@ set(time_stepping_src
         time_integrator.cpp
         rk3ssp.cpp
         ode23.cpp
+        euler.cpp
         petsc_time_integrator.cpp
         petsc_environment.cpp
         bdf_multigrid.cpp

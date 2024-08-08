@@ -15,7 +15,7 @@ endif()
 if(MADG_USE_CUDA)
     set(PETSC_CUDAC_FLAG "--with-cudac=${CMAKE_CUDA_COMPILER}")
     set(PETSC_CUDA_FLAG "--with-cuda")
-    set(PETSC_CUDA_ARCH_FLAG "--with-cuda-arch=35")
+    set(PETSC_CUDA_ARCH_FLAG "--with-cuda-arch=89")
     set(PETSC_CUDA_DIR_FLAG "--with-cuda-dir=${CUDA_TOOLKIT_ROOT_DIR}")
 else()
     set(PETSC_CUDAC_FLAG "")
@@ -75,7 +75,8 @@ elseif(MADG_USE_CUDA)
     ExternalProject_Add(
             petsc_external
             GIT_REPOSITORY https://github.com/petsc/petsc.git
-            GIT_TAG 6e6ecd73b34105bf31fbcb05a63437061cbea93b
+            GIT_TAG main
+            ## GIT_TAG 6e6ecd73b34105bf31fbcb05a63437061cbea93b
 
             BUILD_IN_SOURCE 1
             SOURCE_DIR=${CMAKE_BINARY_DIR}/external/petsc/
@@ -84,7 +85,7 @@ elseif(MADG_USE_CUDA)
             ${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external/configure
             PETSC_DIR=${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external
             PETSC_ARCH=${PETSC_ARCH_FLAG}
-            --with-cc=${CMAKE_C_COMPILER} --with-cxx=${CMAKE_CXX_COMPILER} --with-fc=0 --with-pic=1 --with-cxx-dialect=C++17 MAKEFLAGS=$MAKEFLAGS COPTFLAGS=${PETSC_OPT_FLAGS} CXXOPTFLAGS=${PETSC_OPT_FLAGS} --with-mpi=0 --with-debugging=${PETSC_DEBUGGING} --download-hwloc=1 --download-f2cblaslapack=1 --with-cudac=${CMAKE_CUDA_COMPILER} --with-cuda --with-cuda-arch=35;52;80 --download-kokkos --download-kokkos-kernels --with-kokkos-kernels-tpl=0 --with-cuda-dir=${CUDA_TOOLKIT_ROOT_DIR}  ${PETSC_PRECISION_FLAG}
+            --with-cc=${CMAKE_C_COMPILER} --with-cxx=${CMAKE_CXX_COMPILER} --with-fc=0 --with-pic=1 --with-cxx-dialect=C++17 MAKEFLAGS=$MAKEFLAGS COPTFLAGS=${PETSC_OPT_FLAGS} CXXOPTFLAGS=${PETSC_OPT_FLAGS} --with-mpi=0 --with-debugging=${PETSC_DEBUGGING} --download-hwloc=1 --download-f2cblaslapack=1 --with-cudac=${CMAKE_CUDA_COMPILER} --with-cuda --with-cuda-arch=89 --download-kokkos --download-kokkos-kernels --with-kokkos-kernels-tpl=0 --with-cuda-dir=${CUDA_TOOLKIT_ROOT_DIR}  ${PETSC_PRECISION_FLAG}
 
             BUILD_COMMAND
             make -j PETSC_DIR=${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external PETSC_ARCH=${PETSC_ARCH_FLAG}

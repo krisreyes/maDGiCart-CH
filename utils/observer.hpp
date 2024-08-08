@@ -46,7 +46,8 @@ class Observable {
      */
     auto it = observers_.find(event);
     if (it != observers_.end()) {
-      if (observer_n_notifications_.at(event) % observer_update_freq_.at(event) == 0) {
+      int rem = observer_n_notifications_.at(event) % observer_update_freq_.at(event);
+      if ( rem == 0 || rem == 1 ) {
         for (const auto& obs : it->second) {
           obs();
         }

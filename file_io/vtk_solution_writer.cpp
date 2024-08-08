@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iomanip>
 #include <limits>
+#include <locale>
 
 #include "data_structures/scalar_solution_state.hpp"
 #include "data_structures/solution_state.hpp"
@@ -42,9 +43,14 @@ write_solution_to_vtk_2d(
   std::map<std::string, double> iter_map;
   std::copy(iteration_status.begin(), iteration_status.end(), std::inserter(iter_map, iter_map.begin()));
 
+  // std::ostringstream ss;
+  // ss << filename_withoutext;
+  // ss << "_step_" << std::setw(iterwidth) << std::setfill('0') << iterstring;
+  // ss << ".vts";
   std::ostringstream ss;
+  ss.imbue(std::locale("C"));
   ss << filename_withoutext;
-  ss << "_step_" << std::setw(iterwidth) << std::setfill('0') << iter_map.at("iter");
+  ss << "_step_" << std::setfill('0') << std::setw(iterwidth) << std::fixed << std::setprecision(0) << iter_map.at("iter");
   ss << ".vts";
 
   const std::string filename = ss.str();
@@ -121,9 +127,14 @@ write_solution_to_vtk_3d(
   iterstring.erase(std::remove(iterstring.begin(), iterstring.end(), ','), iterstring.end());
 
 
+  // std::ostringstream ss;
+  // ss << filename_withoutext;
+  // ss << "_step_" << std::setw(iterwidth) << std::setfill('0') << iterstring;
+  // ss << ".vts";
   std::ostringstream ss;
+  ss.imbue(std::locale("C"));
   ss << filename_withoutext;
-  ss << "_step_" << std::setw(iterwidth) << std::setfill('0') << iterstring;
+  ss << "_step_" << std::setfill('0') << std::setw(iterwidth) << std::fixed << std::setprecision(0) << iter_map.at("iter");
   ss << ".vts";
 
   const std::string filename = ss.str();
