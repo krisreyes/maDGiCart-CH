@@ -75,7 +75,7 @@ elseif(MADG_USE_CUDA)
     ExternalProject_Add(
             petsc_external
             GIT_REPOSITORY https://github.com/petsc/petsc.git
-            GIT_TAG main
+            GIT_TAG v3.21.5
             ## GIT_TAG 6e6ecd73b34105bf31fbcb05a63437061cbea93b
 
             BUILD_IN_SOURCE 1
@@ -85,7 +85,7 @@ elseif(MADG_USE_CUDA)
             ${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external/configure
             PETSC_DIR=${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external
             PETSC_ARCH=${PETSC_ARCH_FLAG}
-            --with-cc=${CMAKE_C_COMPILER} --with-cxx=${CMAKE_CXX_COMPILER} --with-fc=0 --with-pic=1 --with-cxx-dialect=C++17 MAKEFLAGS=$MAKEFLAGS COPTFLAGS=${PETSC_OPT_FLAGS} CXXOPTFLAGS=${PETSC_OPT_FLAGS} --with-mpi=0 --with-debugging=${PETSC_DEBUGGING} --download-hwloc=1 --download-f2cblaslapack=1 --with-cudac=${CMAKE_CUDA_COMPILER} --with-cuda --with-cuda-arch=89 --download-kokkos --download-kokkos-kernels --with-kokkos-kernels-tpl=0 --with-cuda-dir=${CUDA_TOOLKIT_ROOT_DIR}  ${PETSC_PRECISION_FLAG}
+            --with-cc=${CMAKE_C_COMPILER} --with-cxx=${CMAKE_CXX_COMPILER} --with-fc=0 --with-pic=1 --with-cxx-dialect=C++17 MAKEFLAGS=$MAKEFLAGS COPTFLAGS=${PETSC_OPT_FLAGS} CXXOPTFLAGS=${PETSC_OPT_FLAGS} --with-mpi=0 --with-debugging=${PETSC_DEBUGGING} --download-hwloc=1 --download-f2cblaslapack=1 --with-cudac=${CMAKE_CUDA_COMPILER} --with-cuda --with-cuda-arch=89 --with-cuda-dir=${CUDA_TOOLKIT_ROOT_DIR}  ${PETSC_PRECISION_FLAG}
 
             BUILD_COMMAND
             make -j PETSC_DIR=${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external PETSC_ARCH=${PETSC_ARCH_FLAG}
@@ -105,7 +105,7 @@ elseif(MADG_USE_HIP)
             ${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external/configure
             PETSC_DIR=${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external
             PETSC_ARCH=${PETSC_ARCH_FLAG}
-            --with-cxx=${CMAKE_CXX_COMPILER} --with-fc=0 --with-pic=1 --with-cxx-dialect=C++17 MAKEFLAGS=$MAKEFLAGS COPTFLAGS=${PETSC_OPT_FLAGS} CXXOPTFLAGS=${PETSC_OPT_FLAGS} --with-mpi=0 --with-debugging=${PETSC_DEBUGGING} --download-hwloc=1 --download-f2cblaslapack=1 --with-hip=1 --with-hip-arch=gfx906 --with-hip-dir=/opt/rocm-5.4.3 --download-kokkos --download-kokkos-kernels --with-kokkos-kernels-tpl=0 ${PETSC_PRECISION_FLAG}
+            --with-cxx=${CMAKE_CXX_COMPILER} --with-fc=0 --with-pic=1 --with-cxx-dialect=C++17 MAKEFLAGS=$MAKEFLAGS COPTFLAGS=${PETSC_OPT_FLAGS} CXXOPTFLAGS=${PETSC_OPT_FLAGS} --with-mpi=0 --with-debugging=${PETSC_DEBUGGING} --download-hwloc=1 --download-f2cblaslapack=1 --with-hip=1 --with-hip-arch=gfx906 --with-hip-dir=/opt/rocm-5.4.3 ${PETSC_PRECISION_FLAG}
 
             BUILD_COMMAND
             make -j PETSC_DIR=${CMAKE_BINARY_DIR}/external/petsc_external-prefix/src/petsc_external PETSC_ARCH=${PETSC_ARCH_FLAG}
