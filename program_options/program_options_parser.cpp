@@ -190,6 +190,30 @@ ProgramOptionsParser::ProgramOptionsParser()
       "converged_abs_tol",
       po::value<double>(&Options::get().converged_abs_tol_)->default_value(0),
       "Absolute residual to consider solution converged. 0 indicates use max time or max timesteps.")(
+      "fft_si_stabilization",
+      po::value<double>(&Options::get().fft_si_stabilization_)->default_value(2.0),
+      "Linear FFT semi-implicit stabilizer. Use 0 for the notebook update.")(
+      "fft_si_max_abs_c",
+      po::value<double>(&Options::get().fft_si_max_abs_c_)->default_value(10.0),
+      "Reject an FFT semi-implicit step if any concentration magnitude exceeds this value.")(
+      "fft_si_growth_factor",
+      po::value<double>(&Options::get().fft_si_growth_factor_)->default_value(1.2),
+      "Adaptive accepted-step growth factor for fft_semi_implicit.")(
+      "fft_si_shrink_factor",
+      po::value<double>(&Options::get().fft_si_shrink_factor_)->default_value(0.5),
+      "Adaptive rejected-step shrink factor for fft_semi_implicit.")(
+      "fft_si_max_retries",
+      po::value<int>(&Options::get().fft_si_max_retries_)->default_value(20),
+      "Maximum consecutive internal FFT semi-implicit rejected steps.")(
+      "fft_si_dealias",
+      po::value<bool>(&Options::get().fft_si_dealias_)->default_value(true),
+      "Apply a 2/3 nonlinear de-aliasing filter in fft_semi_implicit.")(
+      "fft_si_plan_measure",
+      po::value<bool>(&Options::get().fft_si_plan_measure_)->default_value(false),
+      "Use FFTW_MEASURE plans instead of FFTW_ESTIMATE at startup.")(
+      "fft_si_laplacian",
+      po::value<std::string>(&Options::get().fft_si_laplacian_)->default_value("fd"),
+      "FFT Laplacian symbol: fd matches the periodic finite-difference operator; spectral matches the notebook.")(
       "petsc_options", po::value<std::string>(&Options::get().petsc_options_), "Petsc runtime options");
 
   multigrid.add_options()(

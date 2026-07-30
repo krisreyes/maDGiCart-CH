@@ -81,6 +81,14 @@ class Options {
   double             time_rel_err_tol() const { return time_rel_err_tol_; }
   double             converged_rel_tol() const { return converged_rel_tol_; }
   double             converged_abs_tol() const { return converged_abs_tol_; }
+  double             fft_si_stabilization() const { return fft_si_stabilization_; }
+  double             fft_si_max_abs_c() const { return fft_si_max_abs_c_; }
+  double             fft_si_growth_factor() const { return fft_si_growth_factor_; }
+  double             fft_si_shrink_factor() const { return fft_si_shrink_factor_; }
+  int                fft_si_max_retries() const { return fft_si_max_retries_; }
+  bool               fft_si_dealias() const { return fft_si_dealias_; }
+  bool               fft_si_plan_measure() const { return fft_si_plan_measure_; }
+  const std::string& fft_si_laplacian() const { return fft_si_laplacian_; }
   const std::string& petsc_options() const { return petsc_options_; }
 
  private:
@@ -140,5 +148,13 @@ class Options {
   double      time_rel_err_tol_;
   double      converged_rel_tol_;
   double      converged_abs_tol_;
+  double      fft_si_stabilization_;
+  double      fft_si_max_abs_c_;
+  double      fft_si_growth_factor_;
+  double      fft_si_shrink_factor_;
+  int         fft_si_max_retries_;
+  bool        fft_si_dealias_;
+  bool        fft_si_plan_measure_;
+  std::string fft_si_laplacian_;
   std::string petsc_options_;
 };
