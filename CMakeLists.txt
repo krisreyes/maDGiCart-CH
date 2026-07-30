@@ -5,6 +5,13 @@ include(ExternalProject)
 
 find_package(Boost REQUIRED COMPONENTS regex program_options log log_setup filesystem thread)
 
+find_path(FFTW3_INCLUDE_DIR fftw3.h)
+find_library(FFTW3_LIB fftw3)
+if(NOT FFTW3_INCLUDE_DIR OR NOT FFTW3_LIB)
+  message(FATAL_ERROR "FFTW3 not found. Set CMAKE_PREFIX_PATH (or FFTW3_ROOT) to your FFTW install. "
+                       "Needed by time_stepping/dct_semi_implicit.cpp.")
+endif()
+
 set(CXX_COMPILER_STRING "${CMAKE_CXX_COMPILER} ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 add_definitions(-DCXX_COMPILER_STRING="${CXX_COMPILER_STRING}")
 add_definitions(-DBOOST_LOG_DYN_LINK)
@@ -111,6 +118,7 @@ include_directories(
         ${TINYXML2_INCLUDE_DIR}
         ${PETSC_INCLUDES}
         ${ROC_LIB_INCLUDES}
+        ${FFTW3_INCLUDE_DIR}
 )
 
 link_directories(${EXTERNAL_INSTALL_DIR}/lib)

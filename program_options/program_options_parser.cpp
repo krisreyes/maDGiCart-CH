@@ -114,10 +114,19 @@ ProgramOptionsParser::ProgramOptionsParser()
       "Macroscopic average volume fraction of concentration.")(
       "eps2",
       po::value<double>(&Options::get().ch_eps2_)->default_value(2.419753086419753e-05),
-      "epsilon^2, the biharmonic coefficient.")(
+      "epsilon^2, the biharmonic coefficient. Read directly by solvers that don't use --eps/--gamma.")(
       "sigma",
       po::value<double>(&Options::get().ch_sigma_)->default_value(291.4488109293305),
-      "sigma, the coefficient of the linearly stabilizing term about m.")(
+      "sigma, the coefficient of the linearly stabilizing term about m. Read directly by solvers "
+      "that don't use --eps/--gamma.")(
+      "eps",
+      po::value<double>(&Options::get().ch_eps_)->default_value(0.0),
+      "epsilon (NOT epsilon^2). Solvers parameterized by (m, eps, gamma) derive eps2 = eps^2 "
+      "internally. No physically meaningful default -- must be set explicitly by those solvers.")(
+      "gamma",
+      po::value<double>(&Options::get().ch_gamma_)->default_value(0.0),
+      "gamma. Solvers parameterized by (m, eps, gamma) derive sigma = 1 / (eps^2 * gamma^2) "
+      "internally. No physically meaningful default -- must be set explicitly by those solvers.")(
       "kernel_variant",
       po::value<int>(&Options::get().kernel_variant_)->default_value(1),
       "Variant of the kernel in 3D CH for performance testing.");

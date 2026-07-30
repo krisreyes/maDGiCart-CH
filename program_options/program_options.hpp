@@ -32,6 +32,8 @@ class Options {
   double             ch_m() const { return ch_m_; }
   double             ch_eps2() const { return ch_eps2_; }
   double             ch_sigma() const { return ch_sigma_; }
+  double             ch_eps() const { return ch_eps_; }
+  double             ch_gamma() const { return ch_gamma_; }
   int                kernel_variant() const { return kernel_variant_; }
 
 
@@ -108,6 +110,8 @@ class Options {
   double      ch_m_;
   double      ch_eps2_;
   double      ch_sigma_;
+  double      ch_eps_;
+  double      ch_gamma_;
   int         kernel_variant_;
 
   // spatial_discretization options;

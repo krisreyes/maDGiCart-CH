@@ -4,6 +4,7 @@ set(time_stepping_src
         ode23.cpp
         euler.cpp
         fft_semi_implicit.cpp
+        dct_semi_implicit.cpp
         petsc_time_integrator.cpp
         petsc_environment.cpp
         bdf_multigrid.cpp
@@ -22,5 +23,5 @@ add_library(time_stepping ${LIBTYPE} ${time_stepping_src})
 
 add_dependencies(time_stepping ${external_libraries})
 
-target_link_libraries(time_stepping parallel logger ${PETSC_LIBRARIES} )
+target_link_libraries(time_stepping parallel logger ${PETSC_LIBRARIES} ${FFTW3_LIB})
 
