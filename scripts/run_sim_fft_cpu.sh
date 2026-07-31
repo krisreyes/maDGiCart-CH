@@ -9,6 +9,11 @@ BASE="${MADG_BASE:-/projects/academic/kreyes3/BNL-M2DT/rlee/maDGiCart-github}"
 SRC="${MADG_SRC:-$BASE/madgicart-fft}"
 BUILD="${MADG_BUILD:-$BASE/madgicart-fft-gcc-build}"
 SIF="${MADG_SIF:-/projects/academic/kreyes3/BNL-M2DT/maDGiCart/madg-gcc-amd64.sif}"
+
+if [ -z "${FFTW_ROOT:-${EBROOTFFTW:-}}" ] && command -v module >/dev/null 2>&1; then
+  module load "${MADG_FFTW_MODULE:-fftw/3.3.10}" >/dev/null 2>&1 || true
+fi
+
 FFTW_ROOT="${FFTW_ROOT:-${EBROOTFFTW:-}}"
 
 [ -d "$SRC" ] || { echo "ERROR: no source directory $SRC" >&2; exit 1; }
