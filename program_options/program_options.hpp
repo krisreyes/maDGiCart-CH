@@ -41,12 +41,12 @@ class Options {
   double domain_y_begin() const { return domain_y_begin_; }
   double domain_y_end() const
   {
-    return (domain_resolution_y_ / domain_resolution_x_) * (domain_x_end_ - domain_x_begin_) + domain_y_begin_;
+    return (static_cast<double>(domain_resolution_y_) / domain_resolution_x_) * (domain_x_end_ - domain_x_begin_) + domain_y_begin_;
   }
   double domain_z_begin() const { return domain_z_begin_; }
   double domain_z_end() const
   {
-    return (domain_resolution_z_ / domain_resolution_x_) * (domain_x_end_ - domain_x_begin_) + domain_z_begin_;
+    return (static_cast<double>(domain_resolution_z_) / domain_resolution_x_) * (domain_x_end_ - domain_x_begin_) + domain_z_begin_;
   }
   int                domain_resolution_x() const { return domain_resolution_x_; }
   int                domain_resolution_y() const { return domain_resolution_y_; }
